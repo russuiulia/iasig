@@ -1,0 +1,27 @@
+on: [push]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Publish to Cloudflare Pages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies and build
+        run: npm i --legacy-peer-deps && npm run build
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: hciKIQ3hRmi6U0ilEvgZUIolovPqDu1vVeNKEWpt
+          accountId: 3abc4e0b0088a90f254633b5c22c2098
+          projectName: iasig
+          directory: /.next
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          workingDirectory: my-site
+          wranglerVersion: '3'
