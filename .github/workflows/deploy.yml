@@ -20,7 +20,7 @@ jobs:
           apiToken: hciKIQ3hRmi6U0ilEvgZUIolovPqDu1vVeNKEWpt
           accountId: 3abc4e0b0088a90f254633b5c22c2098
           projectName: iasig
-          directory: /.next
+          directory: .next
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: main
           workingDirectory: /
