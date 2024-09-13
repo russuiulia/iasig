@@ -63,7 +63,7 @@ export const Hero = async ({ locale }) => {
         </div>
       </div>
 
-      {/*   <FloatingComponents />*/}
+      <FloatingComponents />
 
       <BgLooper />
     </section>

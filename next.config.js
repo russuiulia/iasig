@@ -1,11 +1,20 @@
-const withContentlayer = require("next-contentlayer").withContentlayer;
+const path = require('path');
+
+const withContentlayer = require('next-contentlayer').withContentlayer;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ["@nextui-org/react", "@nextui-org/theme"],
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(__dirname, './'),
+    };
+    return config;
+  },
+  transpilePackages: ['@nextui-org/react', '@nextui-org/theme'],
   swcMinify: true,
   reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.
-  redirects: require("./next-redirect.js"),
+  redirects: require('./next-redirect.js'),
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -15,11 +24,11 @@ const nextConfig = {
   },
   images: {
     domains: [
-      "opencollective-production.s3.us-west-1.amazonaws.com",
-      "avatars.githubusercontent.com",
-      "logo.clearbit.com",
-      "i.pravatar.cc",
-      "nextui.org",
+      'opencollective-production.s3.us-west-1.amazonaws.com',
+      'avatars.githubusercontent.com',
+      'logo.clearbit.com',
+      'i.pravatar.cc',
+      'nextui.org',
     ],
   },
 };
