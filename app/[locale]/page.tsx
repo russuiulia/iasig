@@ -28,7 +28,7 @@ export default async function Home({
     <I18nProviderClient locale={locale}>
       <main className="container mx-auto max-w-7xl px-6 flex-grow">
         <section className="flex flex-col items-center justify-center">
-          <Hero locale={locale} />
+          <Hero />
           <FeaturesGrid features={landingContent.topFeatures} />
           <Sponsors />
           <CustomThemes />

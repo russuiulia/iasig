@@ -15,18 +15,31 @@ const BgLooper = dynamic(
 );
 
 import { client } from '../../../sanity/client';
+import { getCurrentLocale } from '@/locales/server';
 
-async function fetchHeroData(locale) {
-  const query = `*[_type == "hero" && language == "${locale}"]{
-      title, subtitle, paragraph, buttonText
-    }`;
-  const heroData = await client.fetch(query);
+interface HeroData {
+  title: string;
+  subtitle: string;
+  paragraph: string;
+  buttonText: string;
+}
+
+const fetchHeroData = async (locale: string): Promise<HeroData> => {
+  const query = `*[_type == "hero" && language == $locale]{
+    title, subtitle, paragraph, buttonText
+  }`;
+
+  const heroData = await client.fetch(query, { locale });
+
   return (
     heroData[0] || { title: '', subtitle: '', paragraph: '', buttonText: '' }
   );
-}
+};
 
-export const Hero = async ({ locale }) => {
+export const revalidate = 10;
+
+export const Hero = async () => {
+  const locale = getCurrentLocale();
   const heroData = await fetchHeroData(locale);
 
   return (
@@ -69,5 +82,3 @@ export const Hero = async ({ locale }) => {
     </section>
   );
 };
-
-export const revalidate = 30;
