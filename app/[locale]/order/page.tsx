@@ -6,9 +6,10 @@ import {
   title,
   titleWrapper,
 } from '@/components/primitives';
+import { Order } from '@/modules/shared/order/order';
 import { useEffect, useState } from 'react';
 
-export default function Order() {
+export default function OrderPage() {
   const [orderId, setOrderId] = useState<string | null>('');
 
   useEffect(() => {
@@ -33,6 +34,7 @@ export default function Order() {
           </div>
         </div>
       </div>
+      {/* <Order /> */}
     </section>
     // <div>
     //   <h1>Order Page</h1>
