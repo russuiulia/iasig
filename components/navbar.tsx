@@ -122,13 +122,6 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
 
   const navLinkClasses = clsx(link({color: "foreground"}), "data-[active=true]:text-primary");
 
-  const handleVersionChange = (key: Key) => {
-    if (key === "v1") {
-      const newWindow = window.open("https://v1.nextui.org", "_blank", "noopener,noreferrer");
-
-      if (newWindow) newWindow.opener = null;
-    }
-  };
 
   const handlePressNavbarItem = (name: string, url: string) => {
     trackEvent("NavbarItem", {
