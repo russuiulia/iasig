@@ -1,5 +1,5 @@
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Status, orderIdRegex } from '../../../constants';
 import { firebaseApp } from '../../../services/firebase';
@@ -13,20 +13,21 @@ import {
   InsuranceTypeSlugs,
   ItemName,
 } from '../types/insurance';
+import { Card, CardBody } from '@nextui-org/react';
 
 export const Order = (): JSX.Element => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const orderId = searchParams.get('order');
 
   const [errorCard, setErrorCard] = useState(false);
-
   const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
   const { data: orderDetails, isLoading } = useLiveDocument(
     'orders',
-    `${router.query.order}`
+    orderId || ''
   );
-  const [notFound, setNotFound] = useState(false);
-
   useEffect(() => {
     const redirectToProductPreOrder = (preOrder: PreOrder<any>) => {
       if (!isV2Order(preOrder as any)) {
@@ -41,22 +42,16 @@ export const Order = (): JSX.Element => {
       if (!slug) {
         setNotFound(true);
       }
-      router.push(`/${slug}?order=${router.query.order}`);
+      router.push(`/${slug}?order=${orderId}`);
     };
 
     const getOrder = async () => {
-      if (!router.isReady) return;
-
-      if (orderIdRegex.test(`${router?.query?.order}`)) {
-        const docRef = doc(
-          getFirestore(firebaseApp),
-          'orders',
-          `${router.query.order}`
-        );
+      if (orderId && orderIdRegex.test(orderId)) {
+        const docRef = doc(getFirestore(firebaseApp), 'orders', orderId);
         const preOrderDocRef = doc(
           getFirestore(firebaseApp),
           'pre-orders',
-          `${router.query.order}`
+          orderId
         );
         const docSnap = await getDoc(docRef);
         const preOrderDocSnap = await getDoc(preOrderDocRef);
@@ -79,7 +74,7 @@ export const Order = (): JSX.Element => {
     };
 
     getOrder();
-  }, [router.isReady, router.query.order]);
+  }, [orderId, router]);
 
   useEffect(() => {
     setErrorCard(!Object.keys(orderDetails).length);
@@ -98,16 +93,17 @@ export const Order = (): JSX.Element => {
         )
       ) {
         const companyName = orderDetails?.details?.companyName;
-        const orderId = router.query.order;
+        const orderId = searchParams.get('order');
+        console.log(orderDetails);
         // ga.purchase(priceEUR, orderId, ItemName[orderDetails.insuranceType], companyName)
         // fbq.purchase(priceEUR, orderId, ItemName[orderDetails.insuranceType], companyName)
         // fba.purchase(priceEUR, orderId, ItemName[orderDetails.insuranceType], companyName)
       }
     }
-  }, [Object.keys(orderDetails || {}).length]);
+  }, [orderDetails, searchParams]);
 
   return (
-    <div className="pb-24 md:pt-0 pt-6">
+    <div className="pb-24 md:pt-0 pt-6 ">
       {notFound ? (
         <p>Not found</p>
       ) : (
@@ -115,9 +111,17 @@ export const Order = (): JSX.Element => {
         //   order={orderDetails}
         //   isLoading={isLoading || loading}
         //   errorCard={errorCard}
-        //   id={router.query.order as string}
+        //   id={orderId as string}
         // />
-        <div>{orderDetails}</div>
+        <Card className="max-w-[400px] mx-auto">
+          <CardBody>
+            <p>{orderDetails?.details?.addonType}</p>
+            <p>{orderDetails?.details?.carModel}</p>
+            <p>{orderDetails?.details?.carPlateNumber}</p>
+            <p>{orderDetails?.details?.carRegistrationCountry}</p>
+          </CardBody>
+        </Card>
+        // <div>{orderDetails?.details?.carModel}</div>
       )}
     </div>
   );

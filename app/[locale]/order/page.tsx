@@ -34,7 +34,7 @@ export default function OrderPage() {
           </div>
         </div>
       </div>
-      {/* <Order /> */}
+      <Order />
     </section>
     // <div>
     //   <h1>Order Page</h1>
