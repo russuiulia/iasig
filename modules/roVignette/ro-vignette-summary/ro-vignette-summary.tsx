@@ -1,8 +1,8 @@
-import { useTranslation } from '~/context/LanguageContext'
-import { PeriodDisplay } from '~/modules/greenCard/green-card-summary/green-card-summary'
-import { isValidPhoneNumber } from '~/utils/isValidPhoneNumber'
-import { normalizeDate } from '~/utils/normalizeDate'
-import { RoVignetteFormValues } from '../types'
+import { useTranslation } from '~/context/LanguageContext';
+import { PeriodDisplay } from '~/modules/greenCard/green-card-summary/green-card-summary';
+import { isValidPhoneNumber } from '~/utils/isValidPhoneNumber';
+import { normalizeDate } from '~/utils/normalizeDate';
+import { RoVignetteFormValues } from '../types';
 
 export const RoVignetteSummary = ({
   certificateNumber,
@@ -16,7 +16,7 @@ export const RoVignetteSummary = ({
   description,
   priceRON,
 }: RoVignetteFormValues): JSX.Element => {
-  const { translate } = useTranslation()
+  const { translate } = useTranslation();
 
   return (
     <div className="bg-gray-lightest rounded-2xl mb-8 text-left px-6 py-8 text-sm">
@@ -24,7 +24,9 @@ export const RoVignetteSummary = ({
         <div>
           {certificateNumber && (
             <div className="mb-2 md:flex md:justify-between md:align-center">
-              <p className="text-gray">{translate('certificateNumber-summary')}:</p>
+              <p className="text-gray">
+                {translate('certificateNumber-summary')}:
+              </p>
               <p className="text-black-lightest md:text-right" translate="no">
                 {certificateNumber} ({carModel} {carPlateNumber})
               </p>
@@ -35,7 +37,10 @@ export const RoVignetteSummary = ({
             <div className="mb-2 md:flex md:justify-between md:align-center">
               <p className="text-gray">{translate(`product:period`)}:</p>
               <p className="text-black-lightest" translate="no">
-                <PeriodDisplay fromDate={normalizeDate(startDate) as Date} days={periodDays} />
+                <PeriodDisplay
+                  fromDate={normalizeDate(startDate) as Date}
+                  days={periodDays}
+                />
               </p>
             </div>
           ) : null}
@@ -72,11 +77,12 @@ export const RoVignetteSummary = ({
           <p className="text-gray">{translate('total')}</p>
           <div className="flex items-end">
             <p className="font-bold text-black-lightest mr-1">
-              {price.toFixed(2)} MDL <span className="font-normal">({priceRON} RON)</span>
+              {price.toFixed(2)} MDL{' '}
+              <span className="font-normal">({priceRON} RON)</span>
             </p>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

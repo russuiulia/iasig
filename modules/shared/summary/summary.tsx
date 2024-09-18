@@ -75,7 +75,7 @@ export const Summary = ({ order }: SummaryProps): JSX.Element => {
           onClick={() => setExpanded(!expanded)}
           className="flex items-center justify-between focus:outline-none px-6 py-4 rounded-2xl bg-gray-lightest w-full mb-2 font-medium text-black-lightest"
         >
-          {translate('order-details')} 
+          {translate('order-details')}
           <img
             src="/images/black-dropdown.svg"
             alt="black-dropdown"

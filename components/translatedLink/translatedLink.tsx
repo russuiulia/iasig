@@ -1,16 +1,25 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 
 export const pathTranslations = {
   '/green-card': { en: '/en/green-card', ru: '/ru/green-card' },
-  '/green-card/terms': { en: '/en/green-card/terms', ru: '/ru/green-card/terms' },
+  '/green-card/terms': {
+    en: '/en/green-card/terms',
+    ru: '/ru/green-card/terms',
+  },
   '/medical': { en: '/en/travel', ru: '/ru/travel' },
   '/medical-optional': { en: '/en/non-residents', ru: '/ru/non-residents' },
   '/medical/donaris': { en: '/en/travel/donaris', ru: '/ru/travel/donaris' },
   '/medical/general': { en: '/en/travel/general', ru: '/ru/travel/general' },
   '/medical/intact': { en: '/en/travel/intact', ru: '/ru/travel/intact' },
-  '/medical/moldcargo': { en: '/en/travel/moldcargo', ru: '/ru/travel/moldcargo' },
-  '/medical/transelit': { en: '/en/travel/transelit', ru: '/ru/travel/transelit' },
+  '/medical/moldcargo': {
+    en: '/en/travel/moldcargo',
+    ru: '/ru/travel/moldcargo',
+  },
+  '/medical/transelit': {
+    en: '/en/travel/transelit',
+    ru: '/ru/travel/transelit',
+  },
   '/medical/grawe': { en: '/en/travel/grawe', ru: '/ru/travel/grawe' },
   '/rca': { en: '/en/mtpl', ru: '/ru/osago' },
   '/rca/terms': { en: '/en/mtpl/terms', ru: '/ru/osago/terms' },
@@ -30,13 +39,21 @@ export const pathTranslations = {
   },
   '/blog': { en: '/en/blog', ru: '/ru/blog' },
   '/rovinieta': { en: '/en/rovignette', ru: '/ru/rovinyetka' },
-  '/terms-of-services': { en: '/en/terms-of-services', ru: '/ru/terms-of-services' },
-}
+  '/terms-of-services': {
+    en: '/en/terms-of-services',
+    ru: '/ru/terms-of-services',
+  },
+};
 
 export const TranslatedLink = ({ locale, children, pageKey }) => {
-  const { asPath } = useRouter()
-  const pathname = asPath.replace('/ru', '').replace('/en', '')
-  const unTranslatedLink = locale === 'ro' ? pathname || '/' : `/${locale}${pathname}`
-  const translatedLink = pathTranslations?.[pageKey]?.[locale] || pageKey
-  return <Link href={translatedLink || unTranslatedLink}>{children}</Link>
-}
+  const asPath = usePathname();
+  const pathname = asPath.replace('/ru', '').replace('/en', '');
+  const unTranslatedLink =
+    locale === 'ro' ? pathname || '/' : `/${locale}${pathname}`;
+  const translatedLink = pathTranslations?.[pageKey]?.[locale] || pageKey;
+  return (
+    <Link href={translatedLink || unTranslatedLink} legacyBehavior>
+      {children}
+    </Link>
+  );
+};

@@ -18,7 +18,7 @@ export const PaymentErrorPage: React.FC = () => {
           <img src="/images/failed.png" alt="emoji" width={129} height={144} className="mx-auto" />
           <h2 className="mb-6 text-center">{translate('init-payment-error')}</h2>
           <div className="mt-3 flex justify-center">
-            <Link href={`${lang}order?order=${router.query.order}`}>
+            <Link href={`${lang}order?order=${router.query.order}`} legacyBehavior>
               <a className="btn inline-flex justify-center rounded-full items-center text-white bg-pink rounded-lg focus:shadow-outline hover:opacity-80 py-3 px-8 h-12 sm:w-52 w-full">
                 {translate('back-to-order')}
               </a>

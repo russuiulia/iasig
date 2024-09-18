@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 import { Maib } from '../maib/maib'
 import { Mia } from '../mia/mia'
@@ -9,6 +9,7 @@ import { WireTransfer } from '../wireTransfer/wireTransfer'
 import { IsgDisclaimer } from '~/components/shared/isgDisclaimer/isgDisclaimer'
 import { useTranslation } from '~/context/LanguageContext'
 import { IsgOrder, PaymentMethod } from '~/services/interfaces/order'
+import { useSearchParams } from 'next/navigation'
 
 export interface PaymentMethodsProps {
   order: IsgOrder<any>
@@ -16,6 +17,9 @@ export interface PaymentMethodsProps {
 
 export const PaymentMethods = ({ order }: PaymentMethodsProps): JSX.Element => {
   const router = useRouter()
+  const searchParams = useSearchParams();
+  const orderId = searchParams.get('order');
+
   const { translate } = useTranslation()
 
   const getPriceEUR = (order) => {
@@ -34,7 +38,7 @@ export const PaymentMethods = ({ order }: PaymentMethodsProps): JSX.Element => {
         </label>
         {seller?.paymentMethods?.includes(PaymentMethod.maib) && (
           <Maib
-            orderId={router.query.order as string}
+            orderId={orderId as string}
             priceEUR={getPriceEUR(order)}
             insuranceType={order?.insuranceType}
             companyName={order?.details?.companyName}
@@ -44,7 +48,7 @@ export const PaymentMethods = ({ order }: PaymentMethodsProps): JSX.Element => {
           <MPay
             companyName={order?.details?.companyName}
             insuranceType={order?.insuranceType}
-            orderId={router.query.order as string}
+            orderId={orderId as string}
             priceEUR={getPriceEUR(order)}
           />
         )}

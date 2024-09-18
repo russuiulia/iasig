@@ -6,6 +6,7 @@ const I18nMiddleware = createI18nMiddleware({
   locales: ["ro", "en", "ru"],
   defaultLocale: "ro",
   urlMappingStrategy: "rewriteDefault",
+  
 });
 
 export function middleware(request: NextRequest) {

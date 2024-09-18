@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { title } from '@/components/primitives';
 import { InsuranceType } from '../types/insurance';
 import { Status } from '~/constants';
 import { ORDER_CARDS_SOURCE } from '~/constants/orderCardSource';
@@ -31,14 +32,17 @@ export const SummaryHeader = ({
         />
       )}
 
-      <h3 className="mb-2 mt-4">
+      <h3 className={`mb-2 mt-4 ${title({ size: 'md' })}`}>
         {translate(
           `${isVignette && isCompleted ? 'vignette:' : ''}payment-title:${order.status}`
         )}{' '}
       </h3>
-      <div className="mb-8 text-xl text-black-lightest">
-        {translate('payment-order')}{' '}
-        <span translate="no" className="bg-gray-lightest py-1 px-4">
+      <div className="mb-8 text-xl text-black-lightest text-center dark:text-white">
+        {translate('payment-order')}
+        <span
+          translate="no"
+          className="bg-gray-lightest py-1 px-4 text-black-lightest dark:text-black-lightest"
+        >
           {id}
         </span>
       </div>

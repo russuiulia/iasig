@@ -35,7 +35,7 @@ interface ForexProviderInterface {
 export const ForexProvider: React.FC<ForexProviderInterface> = ({
   children,
 }) => {
-  const { isReady } = useRouter();
+  // const { isReady } = useRouter();
   const [exchangeRate, setExchangeRate] = useState<ExchangeRate>({
     EUR: 1,
     RON: 1,
@@ -54,16 +54,16 @@ export const ForexProvider: React.FC<ForexProviderInterface> = ({
   );
 
   useEffect(() => {
-    if (!isReady) {
-      return;
-    }
+    // if (!isReady) {
+    //   return;
+    // }
     getAllTodayCurrency().then((data) => {
       if (data) {
         setExchangeRate({ ...data, MDL: 1 });
         setExchangeRateLoaded(true);
       }
     });
-  }, [isReady]);
+  }, []);
 
   return (
     <ForexProviderContext.Provider
