@@ -1,0 +1,23 @@
+.div {
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .div {
+    max-width: 100%;
+  }
+}
+
+.form {
+  padding-bottom: 8px;
+}
+
+.mpayCard {
+  border: 1px solid #f2f5f8;
+  width: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  color: inherit;
+}

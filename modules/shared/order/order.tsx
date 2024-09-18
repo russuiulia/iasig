@@ -6,7 +6,7 @@ import { firebaseApp } from '../../../services/firebase';
 import { useLiveDocument } from '../../../utils/useLive';
 
 import { PreOrder } from '../../../interfaces/preOrder';
-// import { OrderContent } from '../orderContent/orderContent';
+import { OrderContent } from '../orderContent/orderContent';
 import { isV2Order } from '../orderV2/types';
 import {
   InsuranceType,
@@ -14,6 +14,7 @@ import {
   ItemName,
 } from '../types/insurance';
 import { Card, CardBody } from '@nextui-org/react';
+import { NotFoundCard } from '@/components/shared/notFoundCard/notFoundCard';
 
 export const Order = (): JSX.Element => {
   const router = useRouter();
@@ -94,7 +95,6 @@ export const Order = (): JSX.Element => {
       ) {
         const companyName = orderDetails?.details?.companyName;
         const orderId = searchParams.get('order');
-        console.log(orderDetails);
         // ga.purchase(priceEUR, orderId, ItemName[orderDetails.insuranceType], companyName)
         // fbq.purchase(priceEUR, orderId, ItemName[orderDetails.insuranceType], companyName)
         // fba.purchase(priceEUR, orderId, ItemName[orderDetails.insuranceType], companyName)
@@ -105,23 +105,14 @@ export const Order = (): JSX.Element => {
   return (
     <div className="pb-24 md:pt-0 pt-6 ">
       {notFound ? (
-        <p>Not found</p>
+        <NotFoundCard />
       ) : (
-        // <OrderContent
-        //   order={orderDetails}
-        //   isLoading={isLoading || loading}
-        //   errorCard={errorCard}
-        //   id={orderId as string}
-        // />
-        <Card className="max-w-[400px] mx-auto">
-          <CardBody>
-            <p>{orderDetails?.details?.addonType}</p>
-            <p>{orderDetails?.details?.carModel}</p>
-            <p>{orderDetails?.details?.carPlateNumber}</p>
-            <p>{orderDetails?.details?.carRegistrationCountry}</p>
-          </CardBody>
-        </Card>
-        // <div>{orderDetails?.details?.carModel}</div>
+        <OrderContent
+          order={orderDetails}
+          isLoading={isLoading || loading}
+          errorCard={errorCard}
+          id={orderId as string}
+        />
       )}
     </div>
   );

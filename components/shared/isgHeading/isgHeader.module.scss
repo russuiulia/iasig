@@ -1,0 +1,48 @@
+.greenCard {
+  background: linear-gradient(180deg, rgba(112, 221, 172, 0.12) 0%, rgba(112, 221, 172, 0.34) 100%);
+}
+
+.blueCard {
+  background: linear-gradient(180deg, rgba(23, 167, 250, 0.08) 0%, rgba(23, 167, 250, 0.2) 100%);
+}
+
+.grayCard {
+  background: linear-gradient(
+    180deg,
+    rgba(212, 215, 218, 0.12) 0%,
+    rgba(212, 215, 218, 0.636) 100%
+  );
+}
+
+.purpleCard {
+  background: linear-gradient(180deg, rgba(155, 106, 253, 0.03) 0%, rgba(155, 106, 253, 0.26) 100%);
+}
+
+.orangeCard {
+  background: linear-gradient(180deg, rgba(243, 133, 82, 0.07) 0%, rgba(243, 133, 82, 0.25) 100%);
+}
+
+.peachCard {
+  background: linear-gradient(180deg, rgba(245, 218, 178, 0.22) 0%, rgba(245, 218, 178, 0.54) 100%);
+}
+
+.frenchPassCard {
+  background: linear-gradient(180deg, rgba(180, 253, 253, 0.22) 0%, rgba(180, 253, 253, 0.54) 100%);
+}
+
+.headerImg {
+  width: 100%;
+  background-size: cover;
+  height: 100%;
+  background: url('../../../public/images/small-header.png');
+  background-repeat: no-repeat;
+  background-position: top;
+  z-index: -10;
+}
+
+@media (max-width: 768px) {
+  .headerImg {
+    background-position: unset;
+    background-position-x: center;
+  }
+}

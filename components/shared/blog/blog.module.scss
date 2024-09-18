@@ -1,0 +1,23 @@
+.blogContainer {
+  width: 100%;
+  background-size: 80%;
+  background-image: url('../../../public/images/logo-img.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.firstCol {
+  height: 541px;
+}
+
+@media (max-width: 425px) {
+  .blogContainer {
+    background-image: unset;
+  }
+  .firstCol {
+    height: 100%;
+  }
+}
+.col {
+  box-shadow: 0 40px 20px -20px #adacac;
+}

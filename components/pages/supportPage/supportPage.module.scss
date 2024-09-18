@@ -1,0 +1,28 @@
+.supportLabel {
+  padding-top: 14px;
+  max-width: 40%;
+  margin: 0 auto;
+  text-align: center;
+  width: -webkit-fill-available;
+  margin-top: -60px;
+}
+
+@media (max-width: 1279px) {
+  .supportLabel {
+    max-width: 60%;
+    margin-top: -40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .supportLabel {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .p {
+    width: 75%;
+    margin: 0 auto 15px auto;
+  }
+}

@@ -20,6 +20,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
+      "~/*": ["./*"],
       "@components/icons/*": ["./components/icons*"],
       "tailwind-variants": ["./node_modules/tailwind-variants"],
       "contentlayer/generated": ["./.contentlayer/generated"]
@@ -40,7 +41,7 @@
     "next-redirect.js",
     "**/node_modules",
     "**/dist",
-    "**/.turbo",
+    "**/.turbo"
   ],
   "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"]
 }

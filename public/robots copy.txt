@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Disallow: /order
+
+# Host
+Host: https://iasig.md
+
+# Sitemaps
+Sitemap: https://iasig.md/sitemap.xml

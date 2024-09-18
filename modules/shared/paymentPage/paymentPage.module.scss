@@ -1,0 +1,15 @@
+.paymentPage {
+  margin: 0 auto;
+  text-align: center;
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .p {
+    width: 75%;
+    margin: 0 auto 15px auto;
+  }
+}
