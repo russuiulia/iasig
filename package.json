@@ -94,7 +94,7 @@
     "rss": "^1.2.2",
     "sanity": "3",
     "sanity-plugin-internationalized-array": "^3.0.0",
-    "sass": "^1.78.0",
+    "sass": "^1.37.5",
     "shelljs": "^0.8.5",
     "styled-components": "6",
     "swr": "^2.2.1",
